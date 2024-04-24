@@ -11,7 +11,7 @@ jobs:
              The smartphone is powered by the MediaTek Dimensity 7050 chipset aided by Mali-G68 GPU. It
              comes with up to 8GB of RAM and 128GB of onboard storage." > file.txt
 
-        - uses: actions/upload-artifact@v2
+        - uses: actions/upload-artifact@v4
           with: 
             name: file
             path: file.txt
@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: job_1
     steps:
-      - uses: actions/download-artifact@v2
+      - uses: actions/download-artifact@v4
         with: 
           name: file
       - run: cat file.txt
