@@ -37,12 +37,12 @@ jobs:
           echo test, and deploy your project.
 
   build-api:
-    runs-on: windos-latest
+    runs-on: windows-latest
     steps:
       - run: echo "Building api"
   build-db:
     needs: build-app
-    runs-on: windos-latest
+    runs-on: windows-latest
     steps:
       - run: echo "Hello Windows"
 
