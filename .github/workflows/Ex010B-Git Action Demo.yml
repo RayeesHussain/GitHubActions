@@ -37,7 +37,6 @@ jobs:
           echo test, and deploy your project.
 
   build-api:
-    needs: build-app
     runs-on: windos-latest
     steps:
       - run: echo "Building api"
