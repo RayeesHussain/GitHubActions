@@ -1,0 +1,27 @@
+name: Artifacts Demo
+on: push
+
+jobs:
+  job_1:
+    name: upload Artifact
+    runs-on: ubuntu-latest
+    steps:
+        - name: "Create a local file"
+          run: echo "Realme Narzo 70 5G features a 6.67-inch FHD+ display with a 120Hz refresh rate. 
+             The smartphone is powered by the MediaTek Dimensity 7050 chipset aided by Mali-G68 GPU. It
+             comes with up to 8GB of RAM and 128GB of onboard storage." > file.txt
+
+        - uses: actions/upload-artifact@v2
+          with: 
+            name: file
+            path: file.txt
+            retention-days: 10
+  job_2:
+    name: download Artifact
+    runs-on: ubuntu-latest
+    needs: job_1
+    steps:
+      - uses: actions/download-artifact@v2
+        with: 
+          name: file
+      - run: cat file.txt
