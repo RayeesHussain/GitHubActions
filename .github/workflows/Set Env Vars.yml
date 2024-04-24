@@ -3,13 +3,13 @@ name: "custom GITHUB_ENV var Demo"
 on: workflow_dispatch
 
 jobs:
-  custom GITHUB_ENV:
+  custom GITHUBENV:
     runs-on: ubuntu-latest
     steps:
       - name: set the value
         id: step_one
         run: |
-          echo "action_state=yellow" >> $GITHUB_ENV
+          echo "action_state=yellow" >> $GITHUBENV
 
       - name: use the value
         id: step_two
