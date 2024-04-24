@@ -16,11 +16,11 @@ jobs:
     testvar: value-2
 
     steps:
-      - name: "print-values-of-env-vars"
-        run: |
-          echo "$Greeting $First_Name. Today is $DAY_OF_WEEK !"
-          echo "testvar $testvar"
-          echo "testvar ${{env.testvar}}"
-        env:
+    - name: "print-values-of-env-vars"
+      run: |
+        echo "$Greeting $First_Name. Today is $DAY_OF_WEEK !"
+        echo "testvar $testvar"
+        echo "testvar ${{env.testvar}}"
+       env:
           FirstName: Student
           testvar: value-3
