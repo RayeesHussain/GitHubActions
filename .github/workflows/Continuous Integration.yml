@@ -1,0 +1,36 @@
+name: dotnet package
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+env:
+  DOTNET_VERSION: '6.0.x'
+
+defaults:
+  run:
+    shell: bash
+    working-directory: ./WebApplication01
+
+jobs:
+  build:
+    runs-on: ubuntu-latest 
+    steps:
+        - uses: actions/checkout@v4
+        - name: Setup dotnet ${{ env.DOTNET_VERSION }}
+          uses: actions/setup-dotnet@v3
+          with:
+            dotnet-version: ${{ env.DOTNET_VERSION }}
+        # You can test your matrix by printing the current dotnet version
+        - name: Install Dependencies
+          run: dotnet restore
+        - name: build with dotnet
+          run: dotnet build --configuration Release
+        - name: Install publish
+          run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
+        - name: upload artifact for deployment job
+          uses: actions/upload-artifact@v4
+          with: 
+            name: .net-app
+            path: ${{env.DOTNET_ROOT}}/myapp
